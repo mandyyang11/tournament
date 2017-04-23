@@ -112,7 +112,7 @@ def reportMatch(winner, loser):
               (winner, loser,))
     conn.commit()
     conn.close()
-    
+
  
 def swissPairings():
     """Returns a list of pairs of players for the next round of a match.
@@ -130,4 +130,13 @@ def swissPairings():
         name2: the second player's name
     """
 
+    player_list = playerStandings()
+    match_list = []
+
+    # assume its always even
+    for i in xrange(0, len(player_list), 2):
+        id1, name1, wins1, matches1 = player_list[i]
+        id2, name2, wins2, matches2 = player_list[i+1]
+        match_list.append((id1, name1, id2, name2))
+    return match_list
 
