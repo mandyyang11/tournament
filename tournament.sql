@@ -7,3 +7,17 @@
 -- these lines here.
 
 
+\c tournament
+
+DROP TABLE IF EXISTS players;
+CREATE TABLE players (
+	ID SERIAL PRIMARY KEY,
+	name VARCHAR(100) DEFAULT NULL
+);
+
+DROP TABLE IF EXISTS matches;
+CREATE TABLE matches (
+	winner INTEGER REFERENCES players(ID),
+	loser INTEGER REFERENCES players(ID),
+	PRIMARY KEY (winner, loser)
+);
